@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: ui-kit-autotests
+Version: 0.1.0
+Summary: UI Kit component autotests based on Playwright + Pytest
+Requires-Python: >=3.11
+Requires-Dist: pytest>=8.0.0
+Requires-Dist: pytest-xdist>=3.6.0
+Requires-Dist: pytest-rerunfailures>=14.0
+Requires-Dist: playwright>=1.46.0
+Requires-Dist: allure-pytest>=2.13.5
+Requires-Dist: python-dotenv>=1.0.1

@@ -1,0 +1,23 @@
+[project]
+name = "ui-kit-autotests"
+version = "0.1.0"
+description = "UI Kit component autotests based on Playwright + Pytest"
+requires-python = ">=3.11"
+dependencies = [
+  "pytest>=8.0.0",
+  "pytest-xdist>=3.6.0",
+  "pytest-rerunfailures>=14.0",
+  "playwright>=1.46.0",
+  "allure-pytest>=2.13.5",
+  "python-dotenv>=1.0.1",
+]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["automation", "automation.config", "automation.core", "automation.tools", "automation.pages", "automation.components", "automation.tests"]
+
+[tool.ruff]
+line-length = 100
