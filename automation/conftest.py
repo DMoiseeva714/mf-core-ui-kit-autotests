@@ -50,6 +50,30 @@ def pytest_runtest_makereport(item, call):
     setattr(item, f'rep_{rep.when}', rep)
 
 
+
+
+def _status_tag_group_from_nodeid(nodeid: str) -> str | None:
+    normalized = nodeid.replace('\\', '/').lower()
+    if 'automation/tests/status_tag/' not in normalized:
+        return None
+    if 'test_status_tag_colors.py' in normalized:
+        return 'colors'
+    if 'test_status_tag_sizes.py' in normalized:
+        return 'size'
+    if 'test_status_tag_label.py' in normalized:
+        return 'label'
+    if 'test_status_tag_smoke.py' in normalized:
+        return 'smoke'
+    return None
+
+
+@pytest.fixture(autouse=True)
+def allure_status_tag_hierarchy(request):
+    group = _status_tag_group_from_nodeid(request.node.nodeid)
+    if group is not None:
+        allure.dynamic.epic('Status Tag')
+        allure.dynamic.feature(group)
+
 @pytest.fixture(scope='session')
 def common_test_data(pytestconfig) -> CommonTestData:
     return set_var_from_args(type('RequestLike', (), {'config': pytestconfig})())
